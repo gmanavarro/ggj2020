@@ -27,6 +27,8 @@ config/icon="res://assets/icon.png"
 [autoload]
 
 CardsData="*res://Scripts/CardsData.gd"
+GameManager="*res://Scripts/GameManager.gd"
+Hand="*res://Scripts/Hand.gd"
 
 [rendering]
 

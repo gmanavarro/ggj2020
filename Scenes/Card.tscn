@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/Card.gd" type="Script" id=2]
+[ext_resource path="res://WhiteTexture.png" type="Texture" id=3]
+[ext_resource path="res://assets/icon.png" type="Texture" id=4]
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.752941, 0.752941, 0.752941, 1 )
 
 [sub_resource type="ImageTexture" id=2]
@@ -24,7 +26,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "Released"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Pivot:rect_position")
@@ -39,8 +41,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -32 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Selected"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Pivot:rect_position")
 tracks/0/interp = 1
@@ -54,8 +55,22 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -32 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Touched"
+[sub_resource type="Animation" id=7]
+resource_name = "Spawn"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 256 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Pivot:rect_position")
 tracks/0/interp = 1
@@ -68,16 +83,19 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -32 ) ]
 }
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.375 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Card" type="Control"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -62.4326
-margin_top = -292.204
-margin_right = 80.5674
-margin_bottom = -87.2045
+margin_left = -73.225
+margin_top = -200.0
+margin_right = 69.775
+margin_bottom = 4.99963
 rect_rotation = 0.248844
 rect_pivot_offset = Vector2( 71, 205 )
 size_flags_horizontal = 7
@@ -90,7 +108,8 @@ __meta__ = {
 [node name="Pivot" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 6 )
+margin_bottom = 4.57764e-05
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -142,9 +161,10 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 4.0
 anims/Idle = SubResource( 3 )
-anims/Released = SubResource( 7 )
-anims/Selected = SubResource( 4 )
-anims/Touched = SubResource( 5 )
+anims/Released = SubResource( 4 )
+anims/Selected = SubResource( 5 )
+anims/Spawn = SubResource( 7 )
+anims/Touched = SubResource( 6 )
 
 [node name="Button" type="TextureButton" parent="."]
 margin_top = -32.0
@@ -153,5 +173,20 @@ margin_bottom = 173.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Node" type="Node" parent="."]
+
+[node name="ArrowLine" type="Line2D" parent="Node"]
+visible = false
+z_index = 4096
+z_as_relative = false
+points = PoolVector2Array( 0, 50, 0, 0 )
+width = 25.0
+width_curve = SubResource( 8 )
+texture = ExtResource( 3 )
+
+[node name="ArrowEnd" type="Sprite" parent="Node"]
+texture = ExtResource( 4 )
 [connection signal="mouse_entered" from="Button" to="." method="mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="pressed"]
