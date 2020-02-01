@@ -8,16 +8,25 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Unit",
+"language": "GDScript",
+"path": "res://src/Unit.gd"
+} ]
 _global_script_class_icons={
-
+"Unit": ""
 }
 
 [application]
 
 config/name="GameJam2020"
-run/main_scene="res://World.tscn"
+run/main_scene="res://src/World.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/always_on_top=true
 
 [rendering]
 
