@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/Card.tscn" type="PackedScene" id=2]
 [ext_resource path="res://WhiteTexture.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Deck.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/LanesManager.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/ResourcesManager.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/ActionBar.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=4]
 
@@ -62,6 +64,59 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ActionBar" type="GridContainer" parent="PlayerPanel"]
+anchor_right = 0.213
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -9.11201
+margin_bottom = -10.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="RepairButton" type="TextureButton" parent="PlayerPanel/ActionBar"]
+margin_right = 201.0
+margin_bottom = 64.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="PlayerPanel/ActionBar/RepairButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "REPAIR"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DismantleButton" type="TextureButton" parent="PlayerPanel/ActionBar"]
+margin_top = 68.0
+margin_right = 201.0
+margin_bottom = 132.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="PlayerPanel/ActionBar/DismantleButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "DISMANTLE"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Deck" type="Panel" parent="PlayerPanel"]
 anchor_left = 0.215
 anchor_right = 0.771
@@ -88,19 +143,20 @@ anchor_bottom = 1.002
 margin_left = 17.496
 margin_top = 15.0
 margin_right = -83.0
-margin_bottom = -70.0493
+margin_bottom = -52.3
 rect_scale = Vector2( 1.5, 1.5 )
 size_flags_horizontal = 15
 size_flags_vertical = 15
-columns = 2
+columns = 3
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Wood" type="TextureRect" parent="PlayerPanel/Resources"]
 modulate = Color( 0.866667, 0.592157, 0.129412, 1 )
-margin_right = 65.0
-margin_bottom = 22.0
+margin_right = 54.0
+margin_bottom = 25.0
 size_flags_horizontal = 7
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.0
@@ -112,9 +168,10 @@ __meta__ = {
 }
 
 [node name="WoodLabel" type="Label" parent="PlayerPanel/Resources"]
-margin_left = 79.0
-margin_right = 124.0
-margin_bottom = 22.0
+margin_left = 63.0
+margin_top = 1.0
+margin_right = 108.0
+margin_bottom = 23.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.0
@@ -122,11 +179,18 @@ text = "Wood"
 align = 1
 valign = 1
 
+[node name="WoodAmount" type="Label" parent="PlayerPanel/Resources"]
+margin_left = 118.0
+margin_top = 1.0
+margin_right = 134.0
+margin_bottom = 23.0
+text = "0"
+
 [node name="Leather" type="TextureRect" parent="PlayerPanel/Resources"]
 modulate = Color( 0.576471, 0.34902, 0.054902, 1 )
-margin_top = 26.0
-margin_right = 65.0
-margin_bottom = 48.0
+margin_top = 29.0
+margin_right = 54.0
+margin_bottom = 54.0
 size_flags_horizontal = 7
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.0
@@ -135,10 +199,10 @@ expand = true
 stretch_mode = 6
 
 [node name="LeatherLabel" type="Label" parent="PlayerPanel/Resources"]
-margin_left = 73.0
-margin_top = 26.0
-margin_right = 129.0
-margin_bottom = 48.0
+margin_left = 58.0
+margin_top = 30.0
+margin_right = 114.0
+margin_bottom = 52.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.0
@@ -146,11 +210,18 @@ text = "Leather"
 align = 1
 valign = 1
 
+[node name="LeatherAmount" type="Label" parent="PlayerPanel/Resources"]
+margin_left = 118.0
+margin_top = 30.0
+margin_right = 134.0
+margin_bottom = 52.0
+text = "0"
+
 [node name="Steel" type="TextureRect" parent="PlayerPanel/Resources"]
 modulate = Color( 0.482353, 0.482353, 0.482353, 1 )
-margin_top = 52.0
-margin_right = 65.0
-margin_bottom = 74.0
+margin_top = 58.0
+margin_right = 54.0
+margin_bottom = 83.0
 size_flags_horizontal = 7
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.0
@@ -159,16 +230,25 @@ expand = true
 stretch_mode = 6
 
 [node name="SteelLabel" type="Label" parent="PlayerPanel/Resources"]
-margin_left = 81.0
-margin_top = 52.0
-margin_right = 121.0
-margin_bottom = 74.0
+margin_left = 66.0
+margin_top = 59.0
+margin_right = 106.0
+margin_bottom = 81.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.0
 text = "Steel"
 align = 1
 valign = 1
+
+[node name="SteelAmount" type="Label" parent="PlayerPanel/Resources"]
+margin_left = 118.0
+margin_top = 59.0
+margin_right = 134.0
+margin_bottom = 81.0
+text = "0"
 [connection signal="pressed" from="Lanes/Lane" to="Lanes" method="_on_Lane_pressed" binds= [ 0 ]]
 [connection signal="pressed" from="Lanes/Lane2" to="Lanes" method="_on_Lane_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="Lanes/Lane3" to="Lanes" method="_on_Lane_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="PlayerPanel/ActionBar/RepairButton" to="PlayerPanel/ActionBar" method="RepairButton_pressed"]
+[connection signal="pressed" from="PlayerPanel/ActionBar/DismantleButton" to="PlayerPanel/ActionBar" method="_DismantleButton_pressed"]

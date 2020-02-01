@@ -45,4 +45,4 @@ func remove_card():
 
 func deselect_all_cards():
 	for card in current_cards:
-		card.deslect()
+		card.deselect()

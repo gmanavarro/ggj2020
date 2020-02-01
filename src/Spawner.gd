@@ -7,11 +7,12 @@ signal combat_won
 signal combat_lost
 
 func _ready():
-	spawnUnit()
-
+	#spawnUnit()
+	pass
 func spawnUnit():
 	var instance = scene.instance()
-	add_child(instance)
+	call_deferred("add_child",instance)
+#	add_child(instance)
 	sprite.modulate = Color(1,1,1)
 
 # warning-ignore:unused_argument

@@ -5,8 +5,8 @@ export(PackedScene) var scene
 onready var sprite = get_node("Sprite")
 
 func _ready():
-	spawnUnit()
-	
+	#spawnUnit()
+	pass
 
 func spawnUnit():
 	var instance = scene.instance()

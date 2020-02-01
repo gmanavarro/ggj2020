@@ -36,7 +36,7 @@ func mouse_exited():
 	get_parent().move_child(self,last_z_value)
 	animation_player.play("Released")
 
-func deslect():
+func deselect():
 	set_selection(false)
 func rearrange():
 	pass
@@ -52,4 +52,8 @@ func pressed():
 	var previous_state = selected
 	GameManager.DECK.deselect_all_cards()
 	set_selection(!previous_state)
-	
+
+func destroy():
+	GameManager.DECK.current_cards.remove(GameManager.DECK.current_cards.find(self))
+	queue_free()
+	pass
