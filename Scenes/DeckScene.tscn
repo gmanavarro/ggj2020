@@ -1,0 +1,190 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://UITheme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/Card.tscn" type="PackedScene" id=2]
+[ext_resource path="res://WhiteTexture.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Deck.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.854902, 0.74902, 0, 0.152941 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.407843, 0.211765, 0.211765, 0.282353 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.792157, 0.0509804, 0.0509804, 0.380392 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.009
+margin_bottom = -5.40002
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lanes" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -151.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lane" type="Panel" parent="Lanes"]
+margin_right = 1024.0
+margin_bottom = 146.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Lane2" type="Panel" parent="Lanes"]
+margin_top = 150.0
+margin_right = 1024.0
+margin_bottom = 296.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Lane3" type="Panel" parent="Lanes"]
+margin_top = 300.0
+margin_right = 1024.0
+margin_bottom = 446.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerPanel" type="Panel" parent="."]
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -3.05176e-05
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Deck" type="Panel" parent="PlayerPanel"]
+anchor_left = 0.215
+anchor_right = 0.771
+anchor_bottom = 1.002
+margin_left = -0.160004
+margin_right = -0.504028
+margin_bottom = -0.0493164
+rect_pivot_offset = Vector2( 284, 150 )
+mouse_filter = 2
+size_flags_horizontal = 7
+size_flags_vertical = 7
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 4 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+card_resource = ExtResource( 2 )
+
+[node name="Resources" type="GridContainer" parent="PlayerPanel"]
+anchor_left = 0.771
+anchor_right = 1.0
+anchor_bottom = 1.002
+margin_left = 17.496
+margin_top = 15.0
+margin_right = -83.0
+margin_bottom = -70.0493
+rect_scale = Vector2( 1.5, 1.5 )
+size_flags_horizontal = 15
+size_flags_vertical = 15
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wood" type="TextureRect" parent="PlayerPanel/Resources"]
+modulate = Color( 0.866667, 0.592157, 0.129412, 1 )
+margin_right = 65.0
+margin_bottom = 22.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodLabel" type="Label" parent="PlayerPanel/Resources"]
+margin_left = 79.0
+margin_right = 124.0
+margin_bottom = 22.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.0
+text = "Wood"
+align = 1
+valign = 1
+
+[node name="Leather" type="TextureRect" parent="PlayerPanel/Resources"]
+modulate = Color( 0.576471, 0.34902, 0.054902, 1 )
+margin_top = 26.0
+margin_right = 65.0
+margin_bottom = 48.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="LeatherLabel" type="Label" parent="PlayerPanel/Resources"]
+margin_left = 73.0
+margin_top = 26.0
+margin_right = 129.0
+margin_bottom = 48.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.0
+text = "Leather"
+align = 1
+valign = 1
+
+[node name="Steel" type="TextureRect" parent="PlayerPanel/Resources"]
+modulate = Color( 0.482353, 0.482353, 0.482353, 1 )
+margin_top = 52.0
+margin_right = 65.0
+margin_bottom = 74.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="SteelLabel" type="Label" parent="PlayerPanel/Resources"]
+margin_left = 81.0
+margin_top = 52.0
+margin_right = 121.0
+margin_bottom = 74.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.0
+text = "Steel"
+align = 1
+valign = 1
