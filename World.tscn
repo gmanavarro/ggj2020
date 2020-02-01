@@ -1,8 +1,18 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Spawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Soldier.tscn" type="PackedScene" id=2]
 
 [node name="World" type="Node2D"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Spawner" parent="." instance=ExtResource( 1 )]
+position = Vector2( 122.158, 117.054 )
+scene = ExtResource( 2 )
+
+[node name="Spawner2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 117.117, 274.132 )
+scene = ExtResource( 2 )
+
+[node name="Spawner3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 117.1, 467.629 )
+scene = ExtResource( 2 )
