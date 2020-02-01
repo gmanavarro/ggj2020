@@ -1,30 +1,33 @@
 extends Node2D
 
-var i = 0
+var i=0
 export(PackedScene) var scene
 onready var sprite = get_node("Sprite")
-signal combat_won
-signal combat_lost
 
 func _ready():
 	spawnUnit()
+	
 
 func spawnUnit():
 	var instance = scene.instance()
 	add_child(instance)
-	sprite.modulate = Color(1,1,1)
+	instance.name = "Enemy" + str(i)
+	randomizeUnitItem()
+	i+=1
 
-# warning-ignore:unused_argument
-func applyCard(item):
-	var soldier = get_child(1)
+func randomizeUnitItem():
+	var enemy = get_node("Enemy"+str(i))
 	var array = []
-	for key in soldier.EQUIPMENT:
+	for key in enemy.EQUIPMENT:
 		array.push_back(key)
 	randomize()
-	var rand = (randi()%6)+1
+	var rand = randi()%6+1
 	#print(rand)
 	var itemName = array[rand]
-	soldier.equipItem(itemName)
+	#print(itemName)
+	enemy.equipItem(itemName)
+	if itemName == "none":
+		return
 	changeSprite(itemName)
 	
 
@@ -36,21 +39,3 @@ func changeSprite(itemName):
 	elif itemName.find("bow") != -1:
 		sprite.modulate = Color(0,1,0)
 			
-	
-func combatWon():
-	emit_signal("combat_won")
-
-func combatLost():
-	emit_signal("combat_lost")
-
-func _on_Button_button_down():
-	applyCard("asd")
-
-
-
-func _on_Button3_button_down():
-	applyCard("asd")
-
-
-func _on_Button2_button_down():
-	applyCard("asd")

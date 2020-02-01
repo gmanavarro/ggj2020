@@ -1,31 +1,86 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Soldier.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/EnemySpawner.gd" type="Script" id=4]
+[ext_resource path="res://src/ProgressBar.gd" type="Script" id=5]
+[ext_resource path="res://assets/blank.svg" type="Texture" id=6]
 
 [node name="World" type="Node2D"]
 
-[node name="Spawner" parent="." instance=ExtResource( 1 )]
-position = Vector2( 40, 114 )
+[node name="Lane1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 41.0312, 209.666 )
 scene = ExtResource( 2 )
 
-[node name="Spawner2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 39.0959, 272 )
+[node name="Lane2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 40.1271, 367.666 )
 scene = ExtResource( 2 )
 
-[node name="Spawner3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 40, 460 )
+[node name="Lane3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 41.0312, 555.666 )
 scene = ExtResource( 2 )
 
-[node name="Spawner4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 984, 114 )
+[node name="EnemyLane1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 985.031, 209.666 )
+script = ExtResource( 4 )
 scene = ExtResource( 3 )
 
-[node name="Spawner5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 984, 272 )
+[node name="EnemyLane2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 985.031, 367.666 )
+script = ExtResource( 4 )
 scene = ExtResource( 3 )
 
-[node name="Spawner6" parent="." instance=ExtResource( 1 )]
-position = Vector2( 984, 460 )
+[node name="EnemyLane3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 985.031, 555.666 )
+script = ExtResource( 4 )
 scene = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 9.03122
+margin_top = 111.666
+margin_right = 109.031
+margin_bottom = 162.666
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 9.03122
+margin_top = 455.666
+margin_right = 109.031
+margin_bottom = 506.666
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 9.03122
+margin_top = 271.666
+margin_right = 109.031
+margin_bottom = 322.666
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_left = 130.0
+margin_top = 29.0
+margin_right = 933.0
+margin_bottom = 79.0
+value = 100.0
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="combat_lost" from="Lane1" to="TextureProgress" method="_on_Lane_combat_lost"]
+[connection signal="combat_won" from="Lane1" to="TextureProgress" method="_on_Lane_combat_won"]
+[connection signal="combat_lost" from="Lane2" to="TextureProgress" method="_on_Lane_combat_lost"]
+[connection signal="combat_won" from="Lane2" to="TextureProgress" method="_on_Lane_combat_won"]
+[connection signal="combat_lost" from="Lane3" to="TextureProgress" method="_on_Lane_combat_lost"]
+[connection signal="combat_won" from="Lane3" to="TextureProgress" method="_on_Lane_combat_won"]
+[connection signal="button_down" from="Button" to="Lane1" method="_on_Button_button_down"]
+[connection signal="button_down" from="Button2" to="Lane3" method="_on_Button2_button_down"]
+[connection signal="button_down" from="Button3" to="Lane2" method="_on_Button3_button_down"]
