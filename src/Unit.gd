@@ -1,8 +1,12 @@
 extends Node2D
-class_name Unit
 
-export var velocity = 1.0
-export var itemEquipped = "none"
+export var velocity = 1.0 
+var itemEquipped = {
+	"name": "",
+	"attack": 0,
+	"defense": 0
+}
+
 var noCollision = true
 
 const EQUIPMENT = {
@@ -48,10 +52,12 @@ func resolveCombat(rivalItem):
 	
 
 
-func equipItem(item):
+func equipItem(card : CardsData.Card):
 	
-	itemEquipped = item
-	print(self.name + ": " + itemEquipped + " equipped")
+	itemEquipped["name"] = card.title
+	itemEquipped["attack"] = card.attack
+	itemEquipped["defense"] = card.defense
+	#print(self.name + ": " + itemEquipped + " equipped")
 	#change sprite
 
 

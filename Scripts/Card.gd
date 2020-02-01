@@ -4,11 +4,15 @@ onready var image_texture = $Pivot/Image
 onready var title_label = $Pivot/Title
 onready var description_label = $Pivot/Description
 onready var animation_player = $AnimationPlayer
+onready var attack_label = $Pivot/Attack
+onready var defense_label = $Pivot/Defense
 var last_z_value  = 0
 func set_data(card_data : CardsData.Card):
 	image_texture.texture = card_data.image
 	title_label.text = card_data.title
 	description_label.text = card_data.description
+	attack_label.text = str(card_data.attack)
+	defense_label.text = str(card_data.defense)
 
 func _ready():
 	set_data(CardsData.get_random_card_data())

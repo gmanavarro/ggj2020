@@ -4,7 +4,7 @@ export(PackedScene) var card_resource
 
 var current_cards = []
 func _ready():
-	for i in range(15):
+	for i in range(6):
 		add_card()
 
 

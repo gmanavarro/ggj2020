@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blank.svg-fb0bd440e26a8235e6164aabff243cd8.stex"
+path="res://.import/espadas2.png-6a44bf98b718910f29eba7a4516c98f6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/blank.svg"
-dest_files=[ "res://.import/blank.svg-fb0bd440e26a8235e6164aabff243cd8.stex" ]
+source_file="res://Assets/Img/espadas2.png"
+dest_files=[ "res://.import/espadas2.png-6a44bf98b718910f29eba7a4516c98f6.stex" ]
 
 [params]
 
